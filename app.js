@@ -1,19 +1,40 @@
 const express = require('express');
+const hbs = require('hbs');
+
 
 const app = express();
+
+
+hbs.registerPartials(__dirname + '/views/partials', function (err) {});
+
+app.set('view engine', 'hbs');
+
 
 
 
 // midelware para servir contenido estatico 
 app.use(express.static('public'));
 
+app.get('/', (req, res) => {
+    res.render('home', {
+        nombre: 'Jhonathan vidal',
+        titulo: 'Curso de nodeJs'
+    });
+});
+
 
 app.get('/generic', (req, res) => {
-    res.sendFile(__dirname + '/public/generic.html');
+    res.render('generic', {
+        nombre: 'Jhonathan vidal',
+        titulo: 'Curso de nodeJs'
+    });
 });
 
 app.get('/elements', (req, res) => {
-    res.sendFile(__dirname + '/public/elements.html');
+    res.render('elements',{
+        nombre: 'Jhonathan vidal',
+        titulo: 'Curso de nodeJs'
+    });
 });
 
 // para todos aquellos que no este en las rutas 
