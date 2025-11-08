@@ -1,8 +1,11 @@
+require('dotenv').config();
+
 const express = require('express');
 const hbs = require('hbs');
 
 
 const app = express();
+
 
 
 hbs.registerPartials(__dirname + '/views/partials', function (err) {});
@@ -37,9 +40,7 @@ app.get('/elements', (req, res) => {
     });
 });
 
-// para todos aquellos que no este en las rutas 
-// app.use((req, res) => {
-//   res.sendFile(__dirname +'/public/404.html');
-// });
 
-app.listen(8080);
+const port = process.env.PORT || 8080;
+
+app.listen(port);
